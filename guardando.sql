@@ -16,8 +16,9 @@ create table datos(
 
 create table telefonos(
 	numero varchar(20),
-	codper integer primary key,
-	FOREIGN KEY (codper) REFERENCES Personas(codper)
+	codper integer,
+	FOREIGN KEY (codper) REFERENCES Personas(codper),
+	primary key(numero,codper)
 );
 
 create table areas(
@@ -104,11 +105,12 @@ create table usuarios(
 	 foreign key(login) references usuarios(login)
  );
  create table dprestamo(
-	 codp int primary key,
+	 codp int,
 	 foreign key (codp) references mprestamo(codp),
 	 codinv int,
 	 foreign key(codinv) references ejemplares(codinv),
-	 estado int
+	 estado int,
+	 primary key(codp, codinv)
  );
  create table mdevol(
 	 codd int primary key,
@@ -123,7 +125,8 @@ create table usuarios(
 	 codd int,
 	 foreign key (codd) references mdevol (codd),
 	 codinv int,
-	 foreign key (codinv) references ejemplares(codinv)
+	 foreign key (codinv) references ejemplares(codinv),
+	 primary key(codd, codinv)
 	 
  );
  create table roles(
@@ -147,7 +150,8 @@ create table usuarios(
 	 codr int,
 	 codm int,
 	 foreign key (codr) references roles(codr),
-	 foreign key (codm) references menus(codm)
+	 foreign key (codm) references menus(codm),
+	 primary key(codr, codm)
  );
  create table procesos(
 	 codp int primary key,
@@ -159,7 +163,8 @@ create table usuarios(
 	 codm int,
 	 codp int,
 	 foreign key (codm) references menus(codm),
-	 foreign key (codp) references procesos(codp)
+	 foreign key (codp) references procesos(codp),
+	 primary key(codm, codp)
  );
  
  
